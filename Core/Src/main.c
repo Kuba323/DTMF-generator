@@ -79,7 +79,6 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	for(uint8_t j=0; j<64; j++){
-//		buffer1[j]=((sin_amp+1)/2)*sin((2*M_PI*j)/64+1)+(sin_amp+1)/2;
 	buffer1[j]=((sin(j*2*PI/64)+1)*(4096/2));
 	}
   /* USER CODE END 1 */
@@ -196,21 +195,18 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 
 
 	  if(htim->Instance==TIM16){
-//		  if(irq_flag){
+
 			  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, buffer1[l]);
 			  l++;
 			  if(l>=64) l=0;
-	//		  HAL_GPIO_TogglePin(LD3_GPIO_Port, LD3_Pin);
-//		  }
+
 	  }
 	  if(htim->Instance==TIM7){
-//		  if(irq_flag){
+
 			  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_2, DAC_ALIGN_12B_R, buffer1[i]);
 			  i++;
 			  if(i>=64) i=0;
-//		  }
 	  }
-//	  irq_flag=false;
 }
 
 
@@ -310,7 +306,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     if(GPIO_Pin == GPIO_PIN_3 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3))
     {
 
-//    	__NOP();= 48; //ASCII value of 0
+
     	TIM16->ARR = 1467;
     	__NOP();
     	TIM7->ARR = 1034;
@@ -319,8 +315,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if(GPIO_Pin == GPIO_PIN_7 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7))
     {
 
-//    	TIM7->ARR = 938;
-//    	__NOP();
+
     	TIM16->ARR =1467;
     	__NOP();
     	TIM7->ARR = 937;
@@ -329,8 +324,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if(GPIO_Pin == GPIO_PIN_8 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8))
     {
 
-//    	TIM7->ARR = 938;
-//    	__NOP();
     	TIM16->ARR =1467;
     	__NOP();
     	TIM7->ARR = 846;
@@ -339,8 +332,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if(GPIO_Pin == GPIO_PIN_9 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9))
     {
 
-//    	TIM7->ARR = 938;
-//    	__NOP();
+
     	TIM16->ARR =1466;
     	__NOP();
     	TIM7->ARR = 765;
@@ -354,8 +346,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     if(GPIO_Pin == GPIO_PIN_3 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_3))
     {
 
-//    	TIM7->ARR = 849;
-//    	__NOP();
+
     	TIM16->ARR =1328;
     	__NOP();
     	TIM7->ARR = 1034;
@@ -364,8 +355,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if(GPIO_Pin == GPIO_PIN_7 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_7))
     {
 
-//    	TIM7->ARR = 849;
-//    	__NOP();
     	TIM16->ARR =1328;
     	__NOP();
     	TIM7->ARR = 937;
@@ -374,8 +363,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if(GPIO_Pin == GPIO_PIN_8 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_8))
     {
 
-//    	TIM7->ARR = 849;
-//    	__NOP();
     	TIM16->ARR =1328;
     	__NOP();
     	TIM7->ARR = 846;
@@ -384,8 +371,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     else if(GPIO_Pin == GPIO_PIN_9 && HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_9))
     {
 
-//    	TIM7->ARR = 849;
-//    	__NOP();
     	TIM16->ARR =1328;
     	__NOP();
     	TIM7->ARR = 765;
